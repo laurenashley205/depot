@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pragprog Books Online Store</title>
+    <!-- method that sets up behing-the-scenes data  -->
+    <%= csrf_meta_tags %>
+
+    <!-- stylesheet_link_tag() helper method generates <link> tag to apps stylesheet
+    specifies option to enable turbolinks - speeds up page changes -->
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# generates a <script> to load app's scripts %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="main">
+      <%= image_tag 'logo.svg', alt: 'The Pragmatic Bookshelf' %>
+      <%# change page heading to whatever is in @page_title instance var
+      blank by default
+      if a controller sets the variable, default overridden  %>
+      <h1><%= @page_title %></h1>
+    </header>
+    <section class="content">
+      <nav class="side_nav">
+        <div id="cart" class="carts">
+          <%= render @cart %>
+        </div>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/questions">Questions</a></li>
+          <li><a href="/news">News</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </nav>
+      <main class='<%= controller.controller_name %>'>
+        <%= yield %>
+      </main>
+    </section>
+  </body>
+</html>
